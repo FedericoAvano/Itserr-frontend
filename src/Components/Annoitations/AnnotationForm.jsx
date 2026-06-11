@@ -244,7 +244,7 @@ const AnnotazioneForm = ({open, onClose, modelId, target, onSaveSuccess}) => {
         };
         
         try {
-            const response = await fetch ('https://handbook-graceless-sheath.ngrok-free.dev/api/annotazioni/', {
+            const response = await fetch ('http://35.159.80.193:8000/api/annotazioni/', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify (payload),

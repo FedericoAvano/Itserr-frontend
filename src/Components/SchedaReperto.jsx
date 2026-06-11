@@ -33,7 +33,7 @@ const SchedaReperto = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    fetch(`https://handbook-graceless-sheath.ngrok-free.dev/api/reperti/${codice}/`)
+    fetch(`http://35.159.80.193:8000/api/reperti/${codice}/`)
       .then((res) => {
         if (!res.ok) throw new Error("Errore nella risposta API");
         return res.json();

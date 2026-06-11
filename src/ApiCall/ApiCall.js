@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // Uso un URL base più generico
-const BASE_URL = "https://handbook-graceless-sheath.ngrok-free.dev/api/"; 
-const REPERTI_BASE_URL = "https://handbook-graceless-sheath.ngrok-free.dev/api/"
+const BASE_URL = "http://35.159.80.193:8000/api"; 
+const REPERTI_BASE_URL = "http://35.159.80.193:8000/api/reperti"
 
 
 export const fetchSiporDataWithDebug = async () => {
