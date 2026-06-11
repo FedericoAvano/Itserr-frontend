@@ -33,7 +33,7 @@ const SchedaReperto = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    fetch(`http://3.72.87.237:8000/api/reperti/${codice}/`)
+    fetch(`http://35.159.80.193:8000/api/reperti/${codice}/`)
       .then((res) => {
         if (!res.ok) throw new Error("Errore nella risposta API");
         return res.json();

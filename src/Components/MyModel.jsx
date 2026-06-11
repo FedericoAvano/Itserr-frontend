@@ -119,14 +119,14 @@ const MyModelComponent = () => {
     ];
 
     const fetchAnnotations = useCallback(() => {
-        fetch(`http://3.72.87.237:8000/api/annotazioni/?modello=${modelId}`)
+        fetch(`http://35.159.80.193:8000/api/annotazioni/?modello=${modelId}`)
             .then((res) => res.json())
             .then(setAnnotations)
             .catch((err) => console.error("Errore fetch:", err));
     }, [modelId]);
 
     useEffect(() => {
-        fetch(`http://3.72.87.237:8000/api/modelli/${modelId}/`)
+        fetch(`http://35.159.80.193:8000/api/modelli/${modelId}/`)
             .then((res) => res.ok ? res.json() : Promise.reject("Modello non trovato"))
             .then((data) => {
                 setModello({ ...data, obj_file: makeAbsolute(data.obj_file), mtl_file: makeAbsolute(data.mtl_file) });

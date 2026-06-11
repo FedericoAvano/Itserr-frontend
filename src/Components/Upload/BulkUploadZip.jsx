@@ -70,7 +70,7 @@ const BulkUploadZip = () => {
 
         try {
             // 3. Eseguiamo la richiesta includendo l'header Authorization
-            const response = await axios.post('http://3.72.87.237:8000/api/modelli/upload-zip/', formData, {
+            const response = await axios.post('http://35.159.80.193:8000/api/modelli/upload-zip/', formData, {
                 headers: { 
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Token ${token}` 
