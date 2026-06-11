@@ -70,7 +70,7 @@ const BulkImagesUploadZip = () => {
 
         try {
             // 3. ✅ URL SINCRO CORRETTO: Modificato 'upload_images_zip' in 'upload-images-zip/' per allinearsi al backend
-            const response = await axios.post('http://35.159.80.193:8000/api/immagini_reperto/upload-images-zip/', formData, {
+            const response = await axios.post('https://handbook-graceless-sheath.ngrok-free.dev/api/immagini_reperto/upload-images-zip/', formData, {
                 headers: { 
                     'Content-Type': 'multipart/form-data',
                     'Authorization': `Token ${token}` 

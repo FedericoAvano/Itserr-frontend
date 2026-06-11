@@ -90,8 +90,8 @@ const RepertoImagesUploader = () => {
         
         // Configura l'endpoint e il payload in base all'azione scelta
         const endpoint = currentTab === 0 
-            ? 'http://35.159.80.193:8000/api/immagini_reperto/upload-images-zip/' 
-            : 'http://35.159.80.193:8000/api/immagini_reperto/upload-single-image/';
+            ? 'https://handbook-graceless-sheath.ngrok-free.dev/api/immagini_reperto/upload-images-zip/' 
+            : 'https://handbook-graceless-sheath.ngrok-free.dev/api/immagini_reperto/upload-single-image/';
         
         if (currentTab === 0) {
             formData.append('file_zip', file);
