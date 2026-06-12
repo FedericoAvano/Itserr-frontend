@@ -16,7 +16,7 @@ const Admin = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
-    navigate("/login");
+    navigate("wp10/login");
   };
 
   return (

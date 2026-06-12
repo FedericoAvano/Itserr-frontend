@@ -78,7 +78,7 @@ const SchedaReperto = () => {
     );
     if (!url) return null;
     if (typeof url === "string" && url.startsWith('/')) {
-      return `http://127.0.0.1:8000${url}`;
+      return `http://35.159.80.193:8000${url}`;
     }
     return url;
   };
