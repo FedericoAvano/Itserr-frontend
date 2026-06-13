@@ -5,17 +5,17 @@ import { useParams, useNavigate } from "react-router-dom";
 import { EffectComposer, N8AO, Bloom } from "@react-three/postprocessing";
 import * as THREE from "three";
 import { Vector3 } from 'three';
-import {
+import { 
     Paper, Stack, IconButton, Tooltip, Typography, Box, useTheme, Dialog, 
     DialogTitle, DialogContent, Collapse, Slider, Switch, FormControlLabel, 
     Divider, Button,
 } from "@mui/material";
 import { 
     Straighten as StraightenIcon, Replay as ReplayIcon, NoteAlt as NoteAltIcon, 
-    ArrowBackIos as ArrowBackIosIcon, ArrowForwardIos as ArrowForwardIosIcon, 
+    ArrowBackIos as ArrowBackIosIcon, ArrowForwardIos as ArrowForwardIosIcon,
     PhotoFilter as PhotoFilterIcon, BlurOn as BlurOnIcon, Description as DescriptionIcon, 
     Close as CloseIcon, Visibility as VisibilityIcon, VisibilityOff as VisibilityOffIcon, 
-    ArrowBack as ArrowBackIcon, HelpOutline as HelpIcon
+    ArrowBack as ArrowBackIcon, HelpOutline as HelpIcon, Layers as LayersIcon
 } from "@mui/icons-material";
 
 // Import componenti locali
@@ -29,7 +29,7 @@ import ModelViewer from "../Logic/ModelViewer";
 
 // --- UTILS ---
 const useIsMobile = (breakpoint = 768) => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= breakpoint);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= breakpoint)
     useEffect(() => {
         const checkIsMobile = () => setIsMobile(window.innerWidth <= breakpoint);
         window.addEventListener("resize", checkIsMobile);
@@ -60,7 +60,7 @@ const parseCoordinates = (annotation) => {
     return null;
 };
 
-// --- COMPONENTE PIN (Spostato per chiarezza di scope) ---
+// --- COMPONENTE PIN ---
 const AnnotationPin = ({ annotation, onClick }) => {
     const position = parseCoordinates(annotation);
     const [hovered, setHovered] = useState(false);
@@ -104,7 +104,7 @@ const MyModelComponent = () => {
     const [showAnnotations, setShowAnnotations] = useState(true); 
     
     const [selectedAnnotation, setSelectedAnnotation] = useState(null); 
-    const [openDescriptionDialog, setOpenDescriptionDialog] = useState(false);
+    const [openDescriptionDialog, setOpenDescriptionDialog] = useState(false)
     const [openHelpDialog, setOpenHelpDialog] = useState(false);
 
     const [isSsaoPanelOpen, setIsSsaoPanelOpen] = useState(false);
@@ -193,7 +193,10 @@ const MyModelComponent = () => {
                     <Tooltip title="Regolazioni Ombre (SSAO)"><IconButton onClick={() => { setIsSsaoPanelOpen(!isSsaoPanelOpen); setIsBloomPanelOpen(false); }} sx={getIconButtonStyle(isSsaoPanelOpen)}><PhotoFilterIcon /></IconButton></Tooltip>
                     <Tooltip title="Effetti Bagliore (Bloom)"><IconButton onClick={() => { setIsBloomPanelOpen(!isBloomPanelOpen); setIsSsaoPanelOpen(false); }} sx={getIconButtonStyle(isBloomPanelOpen)}><BlurOnIcon /></IconButton></Tooltip>
                     <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: "rgba(255,255,255,0.15)" }} />
-                    <Tooltip title={showAnnotations ? "Nascondi Punti" : "Mostra Punti"}><IconButton onClick={() => setShowAnnotations(!showAnnotations)} sx={getIconButtonStyle(!showAnnotations)}>{showAnnotations ? <VisibilityIcon /> : <VisibilityOffIcon />}</IconButton></Tooltip>
+                    
+                    {/* Pulsante Annotazioni aggiunto qui */}
+                    <Tooltip title={showAnnotations ? "Nascondi Annotazioni" : "Mostra Annotazioni"}><IconButton onClick={() => setShowAnnotations(!showAnnotations)} sx={getIconButtonStyle(showAnnotations)}><LayersIcon /></IconButton></Tooltip>
+                    
                     <Tooltip title="Strumento Righello"><IconButton onClick={() => setIsMeasuring(!isMeasuring)} sx={getIconButtonStyle(isMeasuring)}><StraightenIcon /></IconButton></Tooltip>
                     <Tooltip title="Inserisci Annotazione"><IconButton onClick={() => setSelectedTarget("waiting")} sx={getIconButtonStyle(selectedTarget === "waiting")}><NoteAltIcon /></IconButton></Tooltip>
                     <Tooltip title="Descrizione Reperto"><IconButton onClick={() => setOpenDescriptionDialog(true)} sx={getIconButtonStyle(openDescriptionDialog)}><DescriptionIcon /></IconButton></Tooltip>
@@ -236,7 +239,7 @@ const MyModelComponent = () => {
                         {selectedTarget === "waiting" && <AnnotationPicker onSelect={(t) => { setSelectedTarget(t); setOpenAnnotazione(true); }} modelRef={modelRef} />}
                         {showAnnotations && annotations.map(a => <AnnotationPin key={a.id} annotation={a} onClick={setSelectedAnnotation} />)}
                     </group>
-                    <OrbitControls ref={controlsRef} makeDefault minDistance={0.1} maxDistance={30} />
+                    <OrbitControls ref={controlsRef} makeDefault minDistance={1} maxDistance={30} />
                     <EffectComposer disableNormalPass={false}>
                         {isSSAOEnabled && <N8AO aoRadius={0.6} intensity={aoIntensity} quality="high" distanceFalloff={1.0} />}
                         {isBloomEnabled && <Bloom intensity={bloomIntensity} luminanceThreshold={0.3} mipmapBlur />}
