@@ -60,7 +60,7 @@ archivio.zip
     │   └── texture.jpg
     └── REPERTO_COD002/
         └── ...
-
+```
 
 ## 4. Logica di Matching Automatico
 
