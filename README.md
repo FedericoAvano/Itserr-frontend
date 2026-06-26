@@ -2,7 +2,7 @@
 
 # 3D V.I.S.O.R. 🏛️💻
 ### Virtual Interface for Scientific Object Reconstruction
-*Sviluppato dalla **Dott.ssa Laura Carpentiero** nell'ambito dell'Infrastruttura di Ricerca **ITSERR** (Italian Technological Services Research Infrastructure)*
+*Sviluppato dalla **Dott.ssa Laura Carpentiero** nell'ambito dell'Infrastruttura di Ricerca **ITSERR** (Italian Strengthening of the ESFRI RI RESILIENCE)*
 
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Backend](https://img.shields.io/badge/Backend-Django%20%2F%20DRF-092E20?logo=django)
@@ -118,5 +118,5 @@ Il prototipo, la progettazione concettuale e l'intera infrastruttura software di
 ---
 
 ### 🇪🇺 Finanziamento e Attribution
-> Sviluppato nell'ambito delle attività di ricerca scientifica applicata al patrimonio culturale digitale.  
+> Sviluppato nell'ambito delle attività del WP 10-Retina.
 > **"Finanziato dall’Unione europea - Next Generation EU, Missione 4 Componente 2 CUP B53C22001770006".**
