@@ -1,4 +1,5 @@
-# Getting Started with Create React App
+# Progetto sviluppato nell'ambito del progetto ITSERR <img width="1425" height="593" alt="Digital ITSERRLogo Color No Background v  01 00" src="https://github.com/user-attachments/assets/c81c1fab-41d0-45bd-80c0-386d678ef941" />
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
