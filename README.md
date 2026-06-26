@@ -1,9 +1,8 @@
  <img width="1425" height="593" alt="Digital ITSERRLogo Color No Background v  01 00" src="https://github.com/user-attachments/assets/c81c1fab-41d0-45bd-80c0-386d678ef941" />
 
- # Progetto sviluppato nell'ambito del progetto ITSERR
-
 # 3D V.I.S.O.R. 🏛️💻
 ### Virtual Interface for Scientific Object Reconstruction
+*Sviluppato dalla **Dott.ssa Laura Carpentiero** nell'ambito dell'Infrastruttura di Ricerca **ITSERR** (Italian Technological Services Research Infrastructure)*
 
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Backend](https://img.shields.io/badge/Backend-Django%20%2F%20DRF-092E20?logo=django)
@@ -20,9 +19,10 @@
 2. [Ingestione Dati e Proxy Layer](#2-ingestione-dati-e-proxy-layer)
 3. [Pipeline Asset 3D (Bulk Upload)](#3-pipeline-asset-3d-bulk-upload)
 4. [Risoluzione Criticità Tecniche](#4-risoluzione-criticità-tecniche)
-5. [Stack Tecnologico](#5-stack-technologico)
+5. [Stack Tecnologico](#5-stack-tecnologico)
 6. [Sistema di Annotazione Semantica](#6-sistema-di-annotazione-semantica)
 7. [Fruizione Multi-Device & UI/UX](#7-fruizione-multi-device--uiux)
+8. [Autore e Crediti](#8-autore-e-crediti)
 
 ---
 
@@ -48,25 +48,27 @@ Il backend in Django funge da **Proxy Layer intelligente** e regista del flusso 
 
 Il sistema supporta la gestione di modelli tridimensionali compositi (Geometria `.obj`, Materiali `.mtl`, Texture `.jpg`/`.png`) attraverso due modalità di upload:
 
-1.  **Caricamento Puntuale:** Controllo granulare e manuale tramite pannello amministrativo per reperti ad alta complessità.
-2.  **Caricamento Massivo (Bulk Upload):** Ingestione di archivi compressi `.zip` strutturati secondo una gerarchia definita:
-    ```text
-    archivio.zip
-    └── modelli_3d/
-        ├── REPERTO_COD001/
-        │   ├── modello.obj
-        │   ├── modello.mtl
-        │   └── texture.jpg
-        └── REPERTO_COD002/
-            └── ...
-    ```
+* **Caricamento Puntuale:** Controllo granulare e manuale tramite pannello amministrativo per reperti ad alta complessità.
+* **Caricamento Massivo (Bulk Upload):** Ingestione di archivi compressi `.zip` strutturati secondo una gerarchia definita:
 
-### Logica di Matching Automatico
-Il backend esegue il parsing del pacchetto, normalizza il nome della cartella in uno **slug** univoco e lo utilizza come chiave di aggancio. Se lo slug coincide con il codice identificativo ufficiale del reperto (es. `MO1138`), il sistema mappa automaticamente e senza ambiguità l'asset 3D alle relazioni $1:1$ della scheda scientifica nel database.
+```text
+archivio.zip
+└── modelli_3d/
+    ├── REPERTO_COD001/
+    │   ├── modello.obj
+    │   ├── modello.mtl
+    │   └── texture.jpg
+    └── REPERTO_COD002/
+        └── ...
+
+
+## 4. Logica di Matching Automatico
+
+Il backend esegue il parsing del pacchetto, normalizza il nome della cartella in uno slug univoco e lo utilizza come chiave di aggancio. Se lo slug coincide con il codice identificativo ufficiale del reperto (es. `MO1138`), il sistema mappa automaticamente e senza ambiguità l'asset 3D alle relazioni $1:1$ della scheda scientifica nel database.
 
 ---
 
-## 4. Risoluzione Criticità Tecniche
+## 5. Risoluzione Criticità Tecniche
 
 * **Sanitizzazione dei file MTL:** All'upload, un algoritmo lato server analizza i file `.mtl` e riscrive dinamicamente i percorsi assoluti locali dei modellatori (es. `C:\Users\...`) convertendoli in path relativi puntanti al *Media Server* di Django.
 * **Lazy Loading delle Mesh:** Ottimizzazione dei tempi di rendering in React tramite `Suspense`. I metadati testuali vengono mostrati istantaneamente, mentre il motore grafico *Three.js* carica progressivamente in background l'asset pesante, evitando il blocco del browser.
@@ -74,11 +76,11 @@ Il backend esegue il parsing del pacchetto, normalizza il nome della cartella in
 
 ---
 
-## 5. Stack Tecnologico
+## 6. Stack Tecnologico
 
 | Componente | Tecnologia Utilizzata | Ruolo / Funzionalità |
 | :--- | :--- | :--- |
-| **Backend Core** | Django & Django REST Framework | Logica di business, persistenza ORM, esposizione di API REST JSON conformi W3C. |
+| **Backend Core** | Django & Django REST Framework | Logica di business, persistenza ORM, esibizione di API REST JSON conformi W3C. |
 | **Real-time Engine** | Django Channels | Abilitazione del protocollo asincrono bi-direzionale **WebSockets**. |
 | **Message Broker** | Redis | In-memory database ad alta velocità per il coordinamento dei messaggi live tra client. |
 | **Frontend Core** | React | Architettura SPA, gestione reattiva dello stato dei componenti e dell'interfaccia utente. |
@@ -89,7 +91,7 @@ Il backend esegue il parsing del pacchetto, normalizza il nome della cartella in
 
 ---
 
-## 6. Sistema di Annotazione Semantica
+## 7. Sistema di Annotazione Semantica
 
 3D V.I.S.O.R. trasforma la mesh 3D da elemento visivo passivo a spazio di ricerca attiva e stratificata:
 
@@ -100,7 +102,7 @@ Il backend esegue il parsing del pacchetto, normalizza il nome della cartella in
 
 ---
 
-## 7. Fruizione Multi-Device & UI/UX
+## 8. Fruizione Multi-Device & UI/UX
 
 L'interfaccia utente è interamente reattiva (*Responsive Design*) e ottimizzata per l'uso in mobilità e direttamente sul campo archeologico:
 * **Layout Adattivo:** Implementato tramite griglie flessibili di *Material UI (MUI)*. I pannelli descrittivi e i form di input si riposizionano automaticamente sui dispositivi mobile per lasciare libero il viewport del modello 3D.
@@ -108,4 +110,13 @@ L'interfaccia utente è interamente reattiva (*Responsive Design*) e ottimizzata
 * **Asset Scaling:** In contesti di bassa connettività (es. durante ricognizioni in situ), il frontend richiede al backend versioni alleggerite e scalate delle texture, preservando la memoria RAM del tablet/smartphone e riducendo il consumo di banda.
 
 ---
-🔬 *Sviluppato nell'ambito delle attività di ricerca scientifica applicata al patrimonio culturale digitale.*
+
+## 9. Autore e Crediti
+
+Il prototipo, la progettazione concettuale e l'intera infrastruttura software di 3D V.I.S.O.R. sono stati interamente ideati, progettati e sviluppati dalla **Dott.ssa Laura Carpentiero**.
+
+---
+
+### 🇪🇺 Finanziamento e Attribution
+> Sviluppato nell'ambito delle attività di ricerca scientifica applicata al patrimonio culturale digitale.  
+> **"Finanziato dall’Unione europea - Next Generation EU, Missione 4 Componente 2 CUP B53C22001770006".**
